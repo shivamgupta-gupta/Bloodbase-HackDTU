@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+</head>
+<body>
+	<form action="signup-normal.php" target="_blank" method="POST">
+		<label>Name</label><input type="text" name="name"><br>
+		<label>Blood Group</label><input type="text" name="bg"><br>
+		<label>Gender</label><select name="gender">
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+			<option value="other">Other</option>
+		</select><br>
+		<label>Disease</label>Yes<input type="radio" name="disease" value="yes">No<input type="radio" name="disease" value="no"><br>
+		<label>Mobile Number</label><input type="text" name="mob"><br>
+		<label>Location</label><input type="text" name="location"><br>
+		<label>Username</label><input type="text" name="user"><br>
+		<label>Password</label><input type="text" name="pass"><br>
+		<input type="submit" name="submit-normal" id="normal-button" "><br>
+
+	</form>
+	<a href="facebook_login.php"><input type="submit" name="facebook" value="Sign Up using Facebook" id="fb"></a>
+	<a href="google_login.php"><input type="submit" name="google" value="Sign Up using Google" id="google"></a>
+	<div id="display"></div>
+	<script type="text/javascript">
+	
+	window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '425818061086815',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();   
+	};
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+
+	  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+	
+	</script>
+</body>
+</html>
+
+

@@ -1,0 +1,331 @@
+<head>
+ <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      
+      body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  background: url("http://i.imgur.com/HgflTDf.jpg") 50% fixed;
+  background-size: cover;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(359deg);
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  background: rgba(4, 40, 68, 0.85);
+}
+
+.login {
+  border-radius: 2px 2px 5px 5px;
+  padding: 10px 20px 20px 20px;
+  width: 90%;
+  max-width: 320px;
+  background: #ffffff;
+  position: relative;
+  padding-bottom: 80px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.login.loading button {
+  max-height: 100%;
+  padding-top: 50px;
+}
+.login.loading button .spinner {
+  opacity: 1;
+  top: 40%;
+}
+.login.ok button {
+  background-color: #8bc34a;
+}
+.login.ok button .spinner {
+  border-radius: 0;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  height: 20px;
+  animation: none;
+  transform: rotateZ(-45deg);
+}
+.login input {
+  display: block;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  transition: border-width 0.2s ease;
+  border-radius: 2px;
+  color: #ccc;
+}
+.login input + i.fa {
+  color: #fff;
+  font-size: 1em;
+  position: absolute;
+  margin-top: -47px;
+  opacity: 0;
+  left: 0;
+  transition: all 0.1s ease-in;
+}
+.login input:focus {
+  outline: none;
+  color: #444;
+  border-color: #2196F3;
+  border-left-width: 35px;
+}
+.login input:focus + i.fa {
+  opacity: 1;
+  left: 30px;
+  transition: all 0.25s ease-out;
+}
+.login a {
+  font-size: 0.8em;
+  color: #2196F3;
+  text-decoration: none;
+}
+.login .title {
+  color: #444;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 10px 0 30px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+.login button {
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px;
+  background: #2196F3;
+  color: #fff;
+  display: block;
+  border: none;
+  margin-top: 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-height: 60px;
+  border: 0px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 2px 2px;
+  transform: rotateZ(0deg);
+  transition: all 0.1s ease-out;
+  border-bottom-width: 7px;
+}
+.login button .spinner {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border: 4px solid #ffffff;
+  border-top-color: rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  left: 50%;
+  top: 0;
+  opacity: 0;
+  margin-left: -20px;
+  margin-top: -20px;
+  animation: spinner 0.6s infinite linear;
+  transition: top 0.3s 0.3s ease, opacity 0.3s 0.3s ease, border-radius 0.3s ease;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+}
+.login:not(.loading) button:hover {
+  box-shadow: 0px 1px 3px #2196F3;
+}
+.login:not(.loading) button:focus {
+  border-bottom-width: 4px;
+}
+
+footer {
+  display: block;
+  padding-top: 50px;
+  text-align: center;
+  color: #ddd;
+  font-weight: normal;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+  font-size: 0.8em;
+}
+footer a, footer a:link {
+  color: #fff;
+  text-decoration: none;
+}
+#outh{
+   display: block;
+   width: 200px;
+}
+
+    </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+  </script>
+
+<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+
+<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
+
+</head>
+
+
+<body>  
+
+
+  <div class="wrapper">
+  <form class="login">
+    <p class="title">Log in</p>
+    <input type="text" placeholder="Username" autofocus/>
+    <i class="fa fa-user"></i>
+    <input type="password" placeholder="Password" />
+    <i class="fa fa-key"></i>
+    <a href="#">Forgot your password?</a>
+    <button>
+      <i class="spinner"></i>
+      <span class="state">Log in</span>
+    </button>
+</form>
+<br>
+<!-- GOOGLE PLUS SIGN IN-->
+
+          
+          <div id="signInButton outh" >
+          <span class="g-signin"
+            data-scope="openid email"
+            data-clientid="HERE_YOUR_API"
+            data-redirecturi="postmessage"
+            data-accesstype="offline"
+            data-cookiepolicy="single_host_origin"
+            data-callback="signInCallback"
+            data-approvalprompt="force">
+          </span>
+        </div>
+
+<div id="result"></div>
+
+<script>
+function signInCallback(authResult) {
+  if (authResult['code']) {
+
+    // Hide the sign-in button now that the user is authorized
+    $('#signinButton').attr('style', 'display: none');
+
+    // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+    $.ajax({
+      type: 'POST',
+      url: '/gconnect?state={{STATE}}',
+      processData: false,
+      data: authResult['code'],
+      contentType: 'application/octet-stream; charset=utf-8',
+      success: function(result) {
+        // Handle or verify the server response if necessary.
+        if (result) {
+          $('#result').html('Login Successful!</br></br>Redirecting...')
+         setTimeout(function() {
+          window.location.href = "/restaurant";
+         }, 4000);
+          
+
+      } else if (authResult['error']) {
+
+    console.log('There was an error: ' + authResult['error']);
+  } else {
+        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+         }
+
+      }
+      
+  }); } }
+</script>
+
+
+
+<!--END GOOGLE PLUS SIGN IN -->
+
+<!--FACEBOOK SIGN IN -->
+<script>
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1853096254975811',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.8' // use version 
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function sendTokenToServer() {
+    var access_token = FB.getAuthResponse()['accessToken'];
+    console.log(access_token)
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+     $.ajax({
+      type: 'POST',
+      url: '/fbconnect?state={{STATE}}',
+      processData: false,
+      data: access_token,
+      contentType: 'application/octet-stream; charset=utf-8',
+      success: function(result) {
+        // Handle or verify the server response if necessary.
+        if (result) {
+          $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+         setTimeout(function() {
+          window.location.href = "https://localhost:8080/dtu/user.html";
+         }, 4000);
+          
+
+      } else {
+        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+         }
+
+      }
+      
+  });
+
+
+    });
+  }
+</script>
+
+
+<br>
+         
+          <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
+<a href='javascript:sendTokenToServer()'>Login with Facebook</a>
+
+</fb:login-button>
+<!--END FACEBOOK SIGN IN -->
+
+
+</div>
+  </body>
+
+  </html>
