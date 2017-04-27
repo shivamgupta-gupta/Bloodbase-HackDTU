@@ -1,6 +1,7 @@
 <?php 
 $host = "localhost";
 $user = "root";
+
 $pass = "";
 $db = "Blood";
 mysql_connect($host, $user, $pass);
